@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./js/funcoes.js">
+    <link rel="shortcut icon" href="./img/favicon.ico" />
+    <link rel="stylesheet" href="./css/registro.css">
+    <title>Registrar</title>
+</head>
+
+<body>
+    <header>
+        <div class="container-header">
+            <a href="./index.html">
+                <h1>FUTSAL</h1>
+            </a>
+
+            <div class="navegacao-header">
+                <ul>
+                    <li><a href="./index.html#oque-e-futsal">O que é?</a></li>
+                    <li><a href="./index.html#historia-futsal">História</a></li>
+                    <li><a href="./index.html#futsal-atualmente">Atualmente</a></li>
+                    <li><a href="./curiosidades.html">Curiosidades</a></li>
+                    <li><a href="./simulador.html">Simulador</a></li>
+                    <li class="entrar"><a href="./login.html">Entrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="formulario-completo">
+            <div class="login">
+                <h2>Cadastro</h2>
+                <div class="campo">
+                    <span class="titulo_campo">Nome:</span>
+                    <input id="nome_input" placeholder="Nome">
+                    <span class="validacao" id="span_validacao_nome"></span>
+                </div>
+                <div class="campo">
+                    <span class="titulo_campo">Email:</span>
+                    <input id="email_input" placeholder="usuario@email.com">
+                    <span class="validacao" id="span_validacao_email"></span>
+                </div>
+                <div class="campo">
+                    <span class="titulo_campo">Seu time:</span>
+                    <select id="time_select" class="select-times" onclick="mudarCorSelect()">
+                        <option value="time" class="select-inicio">Time</option>
+                        <option value="ACBF">ACBF</option>
+                        <option value="Atlântico">Atlântico</option>
+                        <option value="Assoeva">Assoeva</option>
+                        <option value="Blumenau">Blumenau</option>
+                        <option value="Campo Mourão">Campo Mourão</option>
+                        <option value="Cascavel">Cascavel</option>
+                        <option value="Corinthians">Corinthians</option>
+                        <option value="Foz Cataratas">Foz Cataratas</option>
+                        <option value="Jaraguá">Jaraguá</option>
+                        <option value="Joaçaba">Joaçaba</option>
+                        <option value="Joinville">Joinville</option>
+                        <option value="Magnus">Magnus</option>
+                        <option value="Marechal">Marechal</option>
+                        <option value="Marreco">Marreco</option>
+                        <option value="Minas">Minas</option>
+                        <option value="Pato">Pato</option>
+                        <option value="Praia Clube">Praia Clube</option>
+                        <option value="Santo André">Santo André</option>
+                        <option value="São José">São José</option>
+                        <option value="Taubaté">Taubaté</option>
+                        <option value="Tubarão">Tubarão</option>
+                        <option value="Umuarama">Umuarama</option>
+                    </select>
+                    <span class="validacao" id="validacao_time"></span>
+                </div>
+                <div class="container-senhas">
+                    <div class="campo">
+                        <span class="titulo_campo">Senha:</span>
+                        <input id="senha_input" type="password" placeholder="*********">
+                        <span class="validacao" id="validacao_senha"></span>
+                    </div>
+                    <div class="campo">
+                        <span class="titulo_campo">Confirme a senha:</span>
+                        <input id="confirmacao_senha_input" type="password" placeholder="*********">
+                        <span class="validacao" id="validacao_confirme_senha"></span>
+                    </div>
+                </div>
+                <button onclick="cadastrar()" class="botao">
+                    Cadastrar
+                </button>
+                <div class="ja-tem-uma-conta">
+                    <span>Já tem uma conta? <a href="./login.html">Entre</a></span>
+                </div>
+
+                <!-- Div do card de erros -->
+                <div id="div_erros_login">
+                    <div class="card_erro" id="cardErro">
+                        <span id="mensagem_erro"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
+
+<script>
+    const times = ["ACBF", "Assoeva", "Atlântico", "Blumenau", "Campo Mourão", "Cascavel", "Corinthians", "Foz Cataratas", "Jaraguá", "Joaçaba", "Joinville", "Magnus", "Marechal", "Marreco", "Minas", "Pato", "Praia Clube", "Santo André", "São José", "Taubaté", "Tubarão", "Umuarama"]
+
+    function cadastrar() {
+        const usuario = {
+            nome: input_nome.value,
+            email: input_email.value,
+            time: select.value,
+            senha: input_senha.value,
+            confirme_senha: input_confirme_senha.value
+        }
+
+        if (usuario.nome.length < 3) {
+            span_validacao_nome.innerHTML = `Nome inválido`
+        }
+        if (usuario.email.indexOf("@") == -1) {
+            span_validacao_email.innerHTML = ''
+        } else {
+            span_validacao_email.innerHTML = `Email invalido`
+        }
+        if (usuario.time == "time") {
+            validacao_time.innerHTML = `Time invalido`
+        }
+        if (usuario.senha.length < 6) {
+            validacao_senha.innerHTML = `Senha inválida`
+        }
+        if (usuario.confirme_senha != usuario.senha) {
+            validacao_confirme_senha.innerHTML = `Senha incorreta`
+        }
+    }
+
+    function mudarCorSelect() {
+        if (select.value == 1) {
+            select.style.color = '#e5e5e550'
+        } else {
+            select.style.color = '#fff'
+        }
+    }
+
+    /*rafael.oliveira@sptech.school*/
+
+</script>
+
+
+<script>
+    function cadastrar() {
+ ///      aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var timeVar = time_select.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+         //   finalizarAguardar();
+            return false;
+        }
+        else if (timeVar == "time") {
+            validacao_time.innerHTML = `Time invalido`
+        }else
+        {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                timeServer: timeVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+          //      finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            //finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>

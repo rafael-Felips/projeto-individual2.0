@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    vertical-align: baseline;
+    list-style: none;
+    border: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    z-index: 200;
+    backdrop-filter: blur(5px)
+}
+.container-header {
+    background-color: #1a1a1ae0;
+    padding: 1% 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #FCA311;
+    position: relative;
+}
+
+.container-header a{
+    text-decoration: none;
+}
+
+.container-header a h1{
+    color: #FCA311;
+    border-bottom: 1px solid #FCA311;
+    letter-spacing: 4px;
+}
+
+.container-header ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navegacao-header {
+    /*background-color: antiquewhite;*/
+    width: 65%;
+    border-radius: 15px;
+}
+
+.navegacao-header>ul {
+    list-style: none;
+    text-decoration: none;
+    color: #FCA311;
+    font-weight: 700;
+}
+
+.navegacao-header a {
+    list-style: none;
+    text-decoration: none;
+    color: #e5e5e5;
+    transition: .3s;
+}
+
+.navegacao-header a:hover{
+    color: #FCA311;
+    font-size: 19px;
+}
+
+
+.login{
+    background-color: #3a3a3a;
+    padding: 0.1% 5%;
+    border-radius: 4px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: .5s;
+}
+
+.login a{
+    color: #FCA311;
+    transition: all .2s ease-in-out
+}
+
+.login:hover{
+    background-color: #e5e5e5;
+    color: #14213d;
+    padding: 0.2% 5.5%;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+.container-principal {
+    background-color: #1a1a1a;
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.principal-esquerda {
+    width: 40%;
+    height: 40%;
+    /*background-color: blueviolet;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-evenly;
+    color: aliceblue;
+}
+
+.principal-esquerda>h1 {
+    color: #FCA311;
+    text-transform: uppercase;
+}
+
+.principal-direita {
+    width: 55%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-principal-direita {
+    width: 100%;
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.412));
+}
+
+.conteudo {
+    background-color: #1a1a1a;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.conteudo h1 {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.titulo-conteudo {
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.oque-e-futsal-container {
+    width: 95%;
+    height: 50vh;
+    display: flex;
+    margin-bottom: 3%;
+    justify-content: center;
+}
+
+.oque-e-futsal-esquerda {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    color: #e5e5e5;
+}
+
+.oque-e-futsal-direita {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-oque-e-futsal{
+    height: 80%;
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.7));
+}
+
+.historia-futsal-container {
+    width: 95%;
+    height: 50vh;
+    display: flex;
+    margin-bottom: 3%;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.historia-futsal-esquerda {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    color: #e5e5e5;
+}
+
+.historia-futsal-direita {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem-historia-futsal{
+    height: 100%;
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.7));
+}
+
+.futsal-atualmente-container {
+    width: 95%;
+    height: 50vh;
+    display: flex;
+    margin-bottom: 3%;
+}
+
+.futsal-atualmente-esquerda {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    color: #e5e5e5;
+}
+
+.conteudo h2{
+    text-align: center;
+    text-decoration: underline;
+    color: #FCA311;
+    text-transform: uppercase;
+}
+
+.conteudo p{
+    text-indent: 3ch;
+    padding: 1%;
+}
+
+.futsal-atualmente-direita{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 30px;
+}
+
+.video{
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.412);
+    border-radius: 30px;
+}
+
+footer {
+    justify-content: center;
+    color: #e5e5e5;
+}
+
+.footer-container {
+    background-color: #252525;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contato-endereco {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding: 1%;
+}
+
+.endereco {
+    display: flex;
+    flex-direction: column;
+}
+
+.contato {
+    display: flex;
+    flex-direction: column;
+}
+
+.redes-sociais{
+    display: flex;
+    width: 100%;
+    margin: 5% 0%;
+}
+.contato ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.contato li a{
+    width: 50px;
+    height: 50px;
+    background-color: #3a3a3a;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: .3s;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contato a:hover{
+    background-color: #FCA311;
+    width: 53px;
+    height: 53px;
+}
+
+.imagem-rede-social{
+    width:60%;
+    filter: invert(100);
+}
+
+.projeto-individual {
+    margin: 1%;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="generateRan()"></button>
+
+    <div class='time'>
+        <img src='./img/escudo-ACBF.png' class='imagem-time'>
+        <span class='nome-time'>
+            ACBF
+        </span>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var random = [];
+    function generateRan() {
+        random = [];
+        var max = 16;
+        for (var i = 0; i < max; i++) {
+            var temp = Math.floor(Math.random() * max);
+            if (random.indexOf(temp) == -1) {
+                random.push(temp);
+            }
+            else
+                i--;
+        }
+        console.log(random)
+    }
+
+    const times_liga = [
+        "<div class='time'><img src='./img/escudo-ACBF.png' class='imagem-time'><span class='nome-time'>ACBF</span></div>",
+        "<div class='time'><img src='./img/escudo-Assoeva.png' class='imagem-time'><span class='nome-time'>Assoeva</span></div>",
+        "<div class='time'><img src='./img/escudo-Atlantico.png' class='imagem-time'><span class='nome-time'>Atlântico</span></div>",
+        "<div class='time'><img src='./img/escudo-Blumenau.png' class='imagem-time'><span class='nome-time'>Blumenau</span></div>",
+        "<div class='time'><img src='./img/escudo-Campo-Mourao.png' class='imagem-time'><span class='nome-time'>Campo Mourão</span></div>",
+        "<div class='time'><img src='./img/escudo-Cascavel.png' class='imagem-time'><span class='nome-time'>Cascavel</span></div>",
+        "<div class='time'><img src='./img/escudo-Corinthians.png' class='imagem-time'><span class='nome-time'>Corinthians</span></div>",
+        "<div class='time'><img src='./img/escudo-Foz-Cataratas.png' class='imagem-time'><span class='nome-time'>Foz Cataratas</span></div>",
+        "<div class='time'><img src='./img/escudo-Jaragua.png' class='imagem-time'><span class='nome-time'>Jaraguá</span></div>",
+        "<div class='time'><img src='./img/escudo-Joacaba.png' class='imagem-time'><span class='nome-time'>Joaçaba</span></div>",
+        "<div class='time'><img src='./img/escudo-Joinville.png' class='imagem-time'><span class='nome-time'>Joinville</span></div>",
+        "<div class='time'><img src='./img/escudo-Magnus.png' class='imagem-time'><span class='nome-time'>Magnus</span></div>",
+        "<div class='time'><img src='./img/escudo-Marechal.png' class='imagem-time'><span class='nome-time'>Marechal</span></div>",
+        "<div class='time'><img src='./img/escudo-Marreco.png' class='imagem-time'><span class='nome-time'>Marreco</span></div>",
+        "<div class='time'><img src='./img/escudo-Minas.png' class='imagem-time'><span class='nome-time'>Minas</span></div>",
+        "<div class='time'><img src='./img/escudo-Pato.png' class='imagem-time'><span class='nome-time'>Pato</span></div>",
+        "<div class='time'><img src='./img/escudo-Praia.png' class='imagem-time'><span class='nome-time'>Praia</span></div>",
+        "<div class='time'><img src='./img/escudo-Santo-Andre.png' class='imagem-time'><span class='nome-time'>Santo André</span></div>",
+        "<div class='time'><img src='./img/escudo-Sao-Jose.png.png' class='imagem-time'><span class='nome-time'>São José</span></div>",
+        "<div class='time'><img src='./img/escudo-Taubate.png.png' class='imagem-time'><span class='nome-time'>Taubaté</span></div>",
+        "<div class='time'><img src='./img/escudo-Tubarao.png.png' class='imagem-time'><span class='nome-time'>Tubarão</span></div>",
+        "<div class='time'><img src='./img/escudo-Umuarama.png' class='imagem-time'><span class='nome-time'>Umuarama</span></div>"] 
+
+</script>
