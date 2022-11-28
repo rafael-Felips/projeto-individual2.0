@@ -15,10 +15,10 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     order by id desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-            select count(idUsuario) as 'torcedores' from usuario u 
-            join equipe as e on e.idEquipe = u.fkEquipe
-            group by fkEquipe
-            order by idEquipe;`;
+        select count(idUsuario) as 'torcedores', e.nome as 'equipe' from usuario u 
+        join equipe as e on e.idEquipe = u.fkEquipe
+        group by fkEquipe
+        order by idEquipe desc;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

@@ -20,12 +20,9 @@
 
             <div class="navegacao-header">
                 <ul>
-                    <li><a href="./index.html#oque-e-futsal">O que é?</a></li>
-                    <li><a href="./index.html#historia-futsal">História</a></li>
-                    <li><a href="./index.html#futsal-atualmente">Atualmente</a></li>
-                    <li><a href="./curiosidades.html">Curiosidades</a></li>
-                    <li><a href="./simulador.html">Simulador</a></li>
-                    <li class="entrar"><a href="./login.html">Entrar</a></li>
+                    <li><a href="./comentarios.html">Comentários</a></li>
+                    <li><a href="./dashboard.html">Dashboard</a></li>
+                    <li class="login"><a href="index.html"> <img src="./img/logout.png" class="icon-logout"> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -37,7 +34,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_7"></span> 
+                            <span id="time_7"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -51,7 +48,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_9"></span> 
+                            <span id="time_9"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -65,7 +62,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_11"></span> 
+                            <span id="time_11"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -79,7 +76,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_13"></span> 
+                            <span id="time_13"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -95,7 +92,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_1"></span> 
+                            <span id="time_1"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -109,7 +106,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_3"></span> 
+                            <span id="time_3"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -123,7 +120,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_5"></span> 
+                            <span id="time_5"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -139,7 +136,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_15"></span> 
+                            <span id="time_15"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -153,7 +150,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_17"></span> 
+                            <span id="time_17"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -167,7 +164,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_19"></span> 
+                            <span id="time_19"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -181,7 +178,7 @@
                 <div class="jogo">
                     <div class="confronto">
                         <div class="container-time">
-                            <span id="time_21"></span> 
+                            <span id="time_21"></span>
                         </div>
                         <span>X</span>
                         <div class="container-time">
@@ -193,7 +190,6 @@
                     </div>
                 </div>
             </div>
-
             <button onclick="simular_jogos()" class="botao">Trocar times</button>
         </div>
 
@@ -227,20 +223,20 @@
         "<div class='time'><img src='./img/escudo-Sao-Jose.png' class='imagem-time'><span class='nome-time'>São José</span></div>",
         "<div class='time'><img src='./img/escudo-Taubate.png' class='imagem-time'><span class='nome-time'>Taubaté</span></div>",
         "<div class='time'><img src='./img/escudo-Tubarao.png' class='imagem-time'><span class='nome-time'>Tubarão</span></div>",
-        "<div class='time'><img src='./img/escudo-Umuarama.png' class='imagem-time'><span class='nome-time'>Umuarama</span></div>"] 
+        "<div class='time'><img src='./img/escudo-Umuarama.png' class='imagem-time'><span class='nome-time'>Umuarama</span></div>"]
 
     function simular_jogos() {
-    const random = [];
+        const num_aleatorio = [];
         for (var i = 0; i < 22; i++) {
             var time = Math.floor(Math.random() * 22);
-            if (random.indexOf(time) == -1) {
-                random.push(time);
+            if (num_aleatorio.indexOf(time) == -1) {
+                num_aleatorio.push(time);
             }
             else
                 i--;
         }
 
-        console.log(random)
+        console.log(num_aleatorio)
 
         placar_1.innerHTML = Math.floor(Math.random() * 8)
         placar_2.innerHTML = Math.floor(Math.random() * 8)
@@ -265,37 +261,36 @@
         placar_21.innerHTML = Math.floor(Math.random() * 8)
         placar_22.innerHTML = Math.floor(Math.random() * 8)
 
-        time_1.innerHTML = times_liga[random[0]]
-        time_2.innerHTML = times_liga[random[1]]
-        time_3.innerHTML = times_liga[random[2]]
-        time_4.innerHTML = times_liga[random[3]]
-        time_5.innerHTML = times_liga[random[4]]
-        time_6.innerHTML = times_liga[random[5]]
-        time_7.innerHTML = times_liga[random[6]]
-        time_8.innerHTML = times_liga[random[7]]
-        time_9.innerHTML = times_liga[random[8]]
-        time_10.innerHTML = times_liga[random[9]]
-        time_11.innerHTML = times_liga[random[10]]
-        time_12.innerHTML = times_liga[random[11]]
-        time_13.innerHTML = times_liga[random[12]]
-        time_14.innerHTML = times_liga[random[13]]
-        time_15.innerHTML = times_liga[random[14]]
-        time_16.innerHTML = times_liga[random[15]]
-        time_17.innerHTML = times_liga[random[16]]
-        time_18.innerHTML = times_liga[random[17]]
-        time_19.innerHTML = times_liga[random[18]]
-        time_20.innerHTML = times_liga[random[19]]
-        time_21.innerHTML = times_liga[random[20]]
-        time_22.innerHTML = times_liga[random[21]]
+        time_1.innerHTML = times_liga[num_aleatorio[0]]
+        time_2.innerHTML = times_liga[num_aleatorio[1]]
+        time_3.innerHTML = times_liga[num_aleatorio[2]]
+        time_4.innerHTML = times_liga[num_aleatorio[3]]
+        time_5.innerHTML = times_liga[num_aleatorio[4]]
+        time_6.innerHTML = times_liga[num_aleatorio[5]]
+        time_7.innerHTML = times_liga[num_aleatorio[6]]
+        time_8.innerHTML = times_liga[num_aleatorio[7]]
+        time_9.innerHTML = times_liga[num_aleatorio[8]]
+        time_10.innerHTML = times_liga[num_aleatorio[9]]
+        time_11.innerHTML = times_liga[num_aleatorio[10]]
+        time_12.innerHTML = times_liga[num_aleatorio[11]]
+        time_13.innerHTML = times_liga[num_aleatorio[12]]
+        time_14.innerHTML = times_liga[num_aleatorio[13]]
+        time_15.innerHTML = times_liga[num_aleatorio[14]]
+        time_16.innerHTML = times_liga[num_aleatorio[15]]
+        time_17.innerHTML = times_liga[num_aleatorio[16]]
+        time_18.innerHTML = times_liga[num_aleatorio[17]]
+        time_19.innerHTML = times_liga[num_aleatorio[18]]
+        time_20.innerHTML = times_liga[num_aleatorio[19]]
+        time_21.innerHTML = times_liga[num_aleatorio[20]]
+        time_22.innerHTML = times_liga[num_aleatorio[21]]
 
         document.title = `${rodada}ª Rodada`
 
         rodada += 1
 
-        if(rodada == 22){
+        if (rodada == 22) {
             rodada = 1;
         }
-
-        setTimeout(simular_jogos, 5000);
     }
+
 </script>

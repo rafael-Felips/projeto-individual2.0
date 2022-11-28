@@ -17,12 +17,12 @@
             <h1>FUTSAL</h1>
             <div class="navegacao-header">
                 <ul>
-                    <li><a href="./index.html#oque-e-futsal">O que é?</a></li>
+                    <!-- <li><a href="./index.html#oque-e-futsal">O que é?</a></li>
                     <li><a href="./index.html#historia-futsal">História</a></li>
-                    <li><a href="./index.html#futsal-atualmente">Atualmente</a></li>
-                    <li><a href="./curiosidades.html">Curiosidades</a></li>
+                    <li><a href="./index.html#futsal-atualmente">Atualmente</a></li> -->
+                    <li><a href="./mural.html">Comentários</a></li>
                     <li><a href="./simulador.html">Simulador</a></li>
-                    <li class="login"><a href="#"> <img src="./img/logout.png" class="icon-logout"> Sair</a></li>
+                    <li class="login"><a href="index.html"> <img src="./img/logout.png" class="icon-logout"> Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -41,7 +41,7 @@
                 <div class="lado-direito">
                     <div class="grafico-donnut">
                         <div>   
-                            <canvas id="grafico_donnut" style="position: relative; height:48vh; width:25vw"></canvas>
+                            <canvas id="myChart2" style="position: relative; height:48vh; width:25vw"></canvas>
                         </div>
                     </div>
                     <div class="informacao">
@@ -180,6 +180,7 @@
                 label: 'tocedores',
                 data: [],
                 fill: false,
+                backgroundColor: '#FCA311',
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             }]
@@ -193,6 +194,7 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             // labels.push(registro.momento_grafico);
+            labels.push(registro.equipe);
             dados.datasets[0].data.push(registro.torcedores);
         }
 
@@ -206,7 +208,7 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 
@@ -216,7 +218,17 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+        const config2 = {
+            type: 'line',
+            data: dados,
+        };
+
+        let myChart2 = new Chart(
+            document.getElementById('myChart2'),
+            config2
+        );
+
+        setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
     }
 
 
@@ -225,7 +237,7 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(dados, myChart) {
+    function atualizarGrafico(dados, myChart, myChart2) {
 
         fetch(`/medidas/tempo-real`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -248,22 +260,23 @@
                         console.log("---------------------------------------------------------------")
                     } else {
                         // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
+                        // dados.labels.shift(); // apagar o primeiro
                         dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        // dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[0].data.push(novoRegistro[0].torcedores); // incluir uma nova medida de umidade
 
                         myChart.update();
+                        myChart2.update();
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
             }
         })
             .catch(function (error) {
