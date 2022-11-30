@@ -208,8 +208,10 @@ form button:hover {
 .comentario span{
     text-transform: uppercase;
     font-weight: 600;
+    font-size: 16px;
 }
 
 .comentario p{
     text-indent: 2ch;
+    font-size: 14px;
 }
