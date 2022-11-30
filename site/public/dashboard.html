@@ -22,7 +22,8 @@
                     <li><a href="./index.html#futsal-atualmente">Atualmente</a></li> -->
                     <li><a href="./comentarios.html">Comentários</a></li>
                     <li><a href="./simulador.html">Simulador</a></li>
-                    <li class="login"><a href="index.html"> <img src="./img/logout.png" class="icon-logout"> Sair</a></li>
+                    <li class="login"><a href="index.html"> <img src="./img/logout.png" class="icon-logout"> Sair</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -40,13 +41,13 @@
 
                 <div class="lado-direito">
                     <div class="grafico-donnut">
-                        <div>   
+                        <div>
                             <canvas id="myChart2" style="position: relative; height:48vh; width:25vw"></canvas>
                         </div>
                     </div>
                     <div class="informacao">
                         <span>Torcedores:</span>
-                        <h1>231</h1>
+                        <h1 id="torcedores_total"></h1>
                     </div>
                 </div>
 
@@ -55,66 +56,6 @@
     </main>
 
 </body>
-<script>
-    const times = [
-        'ACBF',
-        'Assoeva',
-        'Atlântico',
-        'Blumenau',
-        'Campo Mourão',
-        'Cascavel',
-        'Corinthians',
-        'Foz Cataratas',
-        'Jaraguá',
-        'Joaçaba',
-        'Joinville',
-        'Magnus',
-        'Marechal',
-        'Marreco',
-        'Minas',
-        'Pato',
-        'Praia Cluble',
-        'Santo André',
-        'São José',
-        'Taubaté',
-        'Tubarão',
-        'Umuarama',
-    ];
-
-    const grafico01 = {
-        labels: times,
-        datasets: [{
-            label: 'Torcedores',
-            backgroundColor: '#FCA311',
-            borderColor: '#FCA331',
-            data: [15, 17, 21, 9, 8, 3, 5, 11, 12, 20, 14, 10, 6, 19, 0, 13, 18, 2, 16, 4, 7, 1],
-        }]
-    };
-
-    const config01 = {
-        type: 'bar',
-        data: grafico01,
-        options: {}
-    };
-
-    const grafico_barra = new Chart(
-        document.getElementById('grafico_barra'),
-        config01
-    );
-
-
-
-    const config02 = {
-        type: 'line',
-        data: grafico01,
-        options: {}
-    };
-
-    const grafico_donnut = new Chart(
-        document.getElementById('grafico_donnut'),
-        config02
-    );
-</script>
 
 </html>
 
@@ -151,9 +92,12 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log(JSON.stringify(resposta))
+
                     resposta.reverse();
 
                     plotarGrafico(resposta);
+                    torcedores_total.innerHTML = total;
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -167,8 +111,11 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    var total = 0
     function plotarGrafico(resposta) {
         console.log('iniciando plotagem do gráfico...');
+
+        Chart.defaults.color = "#e5e5e5";
 
         // Criando estrutura para plotar gráfico - labels
         let labels = [];
@@ -180,9 +127,15 @@
                 label: 'Tocedores',
                 data: [],
                 fill: false,
-                backgroundColor: '#FCA311',
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                backgroundColor: ["#ED8600", "#FFCD00", "#EE1C25", "#ffffff", "#000000", "#00002E", "#000000", "#283371", "#FFCC00", "#12225A", "#FF162C", "#FAA21A", "#000000", "#00562D", "#0F3969", "#002C57", "#FFDD00", "#015FA0", "#F5AE1B", "#FFFFFF", "#061E3E", "#00458B"],
+                // backgroundColor: '#FCA311',
+                borderColor: '#989898',
+                tension: 0.1,
+                options: {
+                    Text: {
+                        color: '#fff'
+                    }
+                }
             }]
         };
 
@@ -196,7 +149,10 @@
             // labels.push(registro.momento_grafico);
             labels.push(registro.equipe);
             dados.datasets[0].data.push(registro.torcedores);
+            total += registro.torcedores;
         }
+
+        console.log(total);
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -228,59 +184,59 @@
             config2
         );
 
-        setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
+        // setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 10000);
     }
 
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
+    // buscando a última medida inserida em tabela contendo as capturas,
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(dados, myChart, myChart2) {
+    // function atualizarGrafico(dados, myChart, myChart2) {
 
-        fetch(`/medidas/tempo-real`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+    //     fetch(`/medidas/tempo-real`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
+    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+    //                 console.log(`Dados atuais do gráfico:`);
+    //                 console.log(dados);
 
-                    // document.getElementById("avisoCaptura").innerHTML = ""
+    //                 // document.getElementById("avisoCaptura").innerHTML = ""
 
-                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        // document.getElementById("avisoCaptura").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].momento_grafico)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        // dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+    //                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+    //                     console.log("---------------------------------------------------------------")
+    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+    //                     // document.getElementById("avisoCaptura").innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+    //                     console.log("Horário do novo dado capturado:")
+    //                     console.log(novoRegistro[0].momento_grafico)
+    //                     console.log("Horário do último dado capturado:")
+    //                     console.log(dados.labels[dados.labels.length - 1])
+    //                     console.log("---------------------------------------------------------------")
+    //                 } else {
+    //                     // tirando e colocando valores no gráfico
+    //                     // dados.labels.shift(); // apagar o primeiro
+    //                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                        // dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].torcedores); // incluir uma nova medida de umidade
+    //                     // dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+    //                     dados.datasets[0].data.push(novoRegistro[0].torcedores); // incluir uma nova medida de umidade
 
-                        myChart.update();
-                        myChart2.update();
-                    }
+    //                     myChart.update();
+    //                     myChart2.update();
+    //                 }
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
+    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart, myChart2), 2000);
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
 </script>

@@ -10,8 +10,8 @@ create table equipe(
 
 insert into equipe values
 	(null, 'ACBF', 'Rio Grande do Sul', 'Carlos Barbosa'),
-	(null, 'Assoeva', 'Rio Grande do Sul', 'Vênancio Aires'),
-	(null, 'Atlântico', 'Rio Grande do Sul', 'Erechim'),
+    (null, 'Assoeva', 'Rio Grande do Sul', 'Vênancio Aires'),
+    (null, 'Atlântico', 'Rio Grande do Sul', 'Erechim'),
 	(null, 'Blumenau', 'Santa Catarina', 'Blumenau'),
 	(null, 'Campo Mourão', 'Paraná', 'Campo Mourão'),
 	(null, 'Cascavel', 'Paraná', 'Cascavel'),
@@ -35,7 +35,6 @@ insert into equipe values
 create table usuario(
 	idUsuario int primary key auto_increment,
     nome varchar(70) not null,
-    -- fkEquipe int,
     fkEquipe int not null,
     foreign key (fkEquipe) references equipe(idEquipe),
     email varchar(50) not null unique,
@@ -66,26 +65,20 @@ insert into usuario values
 	(null, 'Luiz', 20, 'luiz@gmail.com', '123456'),
 	(null, 'Thiago', 21, 'thiago@gmail.com', '123456'),
 	(null, 'Eduardo', 22, 'eduardo@gmail.com', '123456');
-
--- desc usuario;
-
-insert into usuario value
-	(null, 'felipe', 7, 'felipe@gmail.com', 123456);
     
-insert into usuario value
-	(null, 'teste', 1, 'teste@gmail.com', 123456);
-    
--- select * from usuario;
+create table comentario(
+	idComentario int auto_increment,
+    titulo varchar(30),
+    descricao varchar(250),
+    fkUsuario int,
+    foreign key(fkUsuario) references usuario (idUsuario),
+    primary key (idComentario, fkUsuario)
+);
 
--- select * from usuario u
--- 	join equipe e on u.fkEquipe = e.idEquipe
---     order by idEquipe asc;
-
-select *, count(idUsuario) as 'torcedores' from usuario u 
+select count(idUsuario) as 'torcedores', e.nome as 'equipe' from usuario u 
 	join equipe as e on e.idEquipe = u.fkEquipe
     group by fkEquipe
-    order by idEquipe;
+    order by idEquipe desc;
     
--- drop database projetoIndividual;
-
--- truncate table usuario;
+select u.nome, c.titulo, c.descricao, c.fkUsuario from usuario as u
+	join comentario as c on c.fkUsuario = u.idUsuario;

@@ -15,7 +15,7 @@ function buscarUltimasMedidas(idAquario, limite_linhas) {
                     order by id desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        select count(idUsuario) as 'torcedores', e.nome as 'equipe' from usuario u 
+        select count(idUsuario) as 'torcedores', e.nome as 'equipe', count(*) as 'total' from usuario u 
         join equipe as e on e.idEquipe = u.fkEquipe
         group by fkEquipe
         order by idEquipe desc;`;

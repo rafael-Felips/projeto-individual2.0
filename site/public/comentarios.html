@@ -29,7 +29,7 @@
 
     <main>
         <div class="avisos">
-            <div class="container" id="comentar">
+            <div class="container">
                 <div class="div-form" id="mural">
                     <h1>Publicar um aviso</h1>
                     <div id="form_postagem">
@@ -46,13 +46,8 @@
                     </div>
                 </div>
 
-                <div class="comentarios">
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
-                    </div>
-                </div>
+            <div class="container-comentarios" id="comentar">
+               
             </div>
         </div>
         <!-- MODAL -->
@@ -191,10 +186,11 @@
                         tem_comentario = 1
                     }
                         comentar.innerHTML += `
-                        ${publicacao.nome} <br>
-                        ${publicacao.titulo} <br>
-                           ${publicacao.descricao} <br>
-                        `
+                        <div class="comentario">
+                            <span>${publicacao.nome}</span>
+                            
+                            <p>${publicacao.descricao}</p>
+                        </div>`
                     }
                     if(tem_comentario == 1){
                         mural.innerHTML = ''
