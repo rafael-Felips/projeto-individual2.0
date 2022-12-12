@@ -158,11 +158,11 @@ main {
     border: none;
 }
 
-form {
+.div-form {
     width: 85%;
 }
 
-form button {
+.div-form button {
     width: 40%;
     padding: 2% 4%;
     color: #14213d;
@@ -176,7 +176,7 @@ form button {
     border: none;
 }
 
-form button:hover {
+.div-form button:hover {
     background-color: #fca311;
     border-radius: 5px;
     color: #e5e5e5;

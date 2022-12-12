@@ -184,3 +184,13 @@ ul {
     text-decoration: none;
     color: #FCA311;
 }
+
+.campo .validacao{
+    color: tomato;
+    width: 100%;
+    height: 5px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+}

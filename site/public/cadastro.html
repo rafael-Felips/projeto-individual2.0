@@ -24,7 +24,6 @@
                     <li><a href="./index.html#historia-futsal">História</a></li>
                     <li><a href="./index.html#futsal-atualmente">Atualmente</a></li>
                     <li><a href="./curiosidades.html">Curiosidades</a></li>
-                    <li><a href="./simulador.html">Simulador</a></li>
                     <li class="entrar"><a href="./login.html">Entrar</a></li>
                 </ul>
             </div>
@@ -85,7 +84,7 @@
                         <span class="validacao" id="validacao_confirme_senha"></span>
                     </div>
                 </div>
-                <button onclick="cadastrar()" class="botao">
+                <button onclick="validar()" class="botao">
                     Cadastrar
                 </button>
                 <div class="ja-tem-uma-conta">
@@ -107,51 +106,69 @@
 
 <script>
     const times = ["ACBF", "Assoeva", "Atlântico", "Blumenau", "Campo Mourão", "Cascavel", "Corinthians", "Foz Cataratas", "Jaraguá", "Joaçaba", "Joinville", "Magnus", "Marechal", "Marreco", "Minas", "Pato", "Praia Clube", "Santo André", "São José", "Taubaté", "Tubarão", "Umuarama"]
-
-    function cadastrar() {
+    function validar() {
+        var validarSessao = 0
+        
         const usuario = {
-            nome: input_nome.value,
-            email: input_email.value,
-            time: select.value,
-            senha: input_senha.value,
-            confirme_senha: input_confirme_senha.value
+            nome: nome_input.value,
+            email: email_input.value,
+            time: time_select.value,
+            senha: senha_input.value,
+            confirme_senha: confirmacao_senha_input.value
         }
 
         if (usuario.nome.length < 3) {
             span_validacao_nome.innerHTML = `Nome inválido`
         }
+        else {
+            span_validacao_nome.innerHTML = ``
+            validarSessao +=1
+        }
         if (usuario.email.indexOf("@") == -1) {
-            span_validacao_email.innerHTML = ''
+            span_validacao_email.innerHTML = 'Email invalido'
         } else {
-            span_validacao_email.innerHTML = `Email invalido`
+            span_validacao_email.innerHTML = ``
+            validarSessao += 1
         }
         if (usuario.time == "time") {
             validacao_time.innerHTML = `Time invalido`
+        } else {
+            validacao_time.innerHTML = ``
+            validarSessao += 1
         }
         if (usuario.senha.length < 6) {
             validacao_senha.innerHTML = `Senha inválida`
+        } else{
+            validacao_senha.innerHTML = ``
+            validarSessao += 1
         }
         if (usuario.confirme_senha != usuario.senha) {
             validacao_confirme_senha.innerHTML = `Senha incorreta`
-        }
-    }
-
-    function mudarCorSelect() {
-        if (select.value == 1) {
-            select.style.color = '#e5e5e550'
         } else {
-            select.style.color = '#fff'
+            validacao_confirme_senha.innerHTML = ``
+            validarSessao += 1
+        }
+
+        if(validarSessao == 5){
+            cadastrar()
         }
     }
-
-    /*rafael.oliveira@sptech.school*/
 
 </script>
 
 
 <script>
+
+    function mudarCorSelect() {
+        if (time_select.value == 1) {
+            time_select.style.color = '#e5e5e550'
+        } else {
+            time_select.style.color = '#fff'
+        }
+    }
+
     function cadastrar() {
- ///      aguardar();
+        ///      aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -161,22 +178,21 @@
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+        // if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        //     cardErro.style.display = "block"
+        //     alert("Mensagem de erro para todos os campos em branco")
 
-         //   finalizarAguardar();
-            return false;
-        }
-        else if (timeVar == "time") {
-            validacao_time.innerHTML = `Time invalido`
-        }else
-        {
-            setInterval(sumirMensagem, 5000)
-        }
+        //     //   finalizarAguardar();
+        //     return false;
+        // }
+        // else if (timeVar == "time") {
+        //     validacao_time.innerHTML = `Time invalido`
+        // } else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
 
         // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar",{
+        fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -201,9 +217,9 @@
                 setTimeout(() => {
                     window.location = "login.html";
                 }, "2000")
-                
+
                 limparFormulario();
-          //      finalizarAguardar();
+                //      finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
